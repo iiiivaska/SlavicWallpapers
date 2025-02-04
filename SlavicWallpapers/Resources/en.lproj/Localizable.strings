@@ -1,0 +1,31 @@
+// General
+"app.name" = "Slavic Wallpaper";
+"app.version" = "Version 1.0";
+
+// Menu
+"menu.update_wallpaper" = "Update Wallpaper";
+"menu.open_folder" = "Open Wallpapers Folder";
+"menu.background_update" = "Background Update";
+"menu.quit" = "Quit";
+"menu.last_update" = "Last update: %@";
+"menu.wallpaper_mode" = "Wallpaper Mode";
+
+// Errors
+"error.network_unavailable" = "No internet connection";
+"error.download_failed" = "Failed to download image";
+"error.invalid_image" = "Invalid image data";
+"error.cache_save_failed" = "Failed to save image";
+"error.wallpaper_set_failed" = "Failed to set wallpaper";
+"error.max_retry_reached" = "Maximum retry attempts reached";
+"error.unknown" = "An unknown error occurred";
+"wallpaper.mode.same" = "Same on All Monitors";
+"wallpaper.mode.different" = "Different on Each Monitor";
+"error.file_not_found" = "Wallpaper file not found";
+
+// Time
+"time.hours_only" = "%d hours";
+"time.minutes_only" = "%d minutes";
+"time.hours_and_minutes" = "%d hours %d minutes";
+"time.update_interval" = "Update Interval";
+"time.hours" = "Hours";
+"time.minutes" = "Minutes"; 

@@ -1,0 +1,31 @@
+// General
+"app.name" = "Slavic Wallpapers";
+"app.version" = "Версия 1.0";
+
+// Menu
+"menu.update_wallpaper" = "Обновить обои";
+"menu.open_folder" = "Открыть папку с обоями";
+"menu.background_update" = "Фоновое обновление";
+"menu.quit" = "Выход";
+"menu.last_update" = "Последнее обновление: %@";
+"menu.wallpaper_mode" = "Режим обоев";
+
+// Errors
+"error.network_unavailable" = "Нет подключения к интернету";
+"error.download_failed" = "Не удалось загрузить изображение";
+"error.invalid_image" = "Поврежденные данные изображения";
+"error.cache_save_failed" = "Не удалось сохранить изображение";
+"error.wallpaper_set_failed" = "Не удалось установить обои";
+"error.max_retry_reached" = "Превышено количество попыток загрузки";
+"error.unknown" = "Произошла неизвестная ошибка";
+"error.file_not_found" = "Файл обоев не найден";
+
+"wallpaper.mode.same" = "Одинаковые на всех мониторах";
+"wallpaper.mode.different" = "Разные на каждом мониторе";
+
+"time.hours_only" = "%d часов";
+"time.minutes_only" = "%d минут";
+"time.hours_and_minutes" = "%d часов %d минут";
+"time.update_interval" = "Интервал обновления";
+"time.hours" = "Часов";
+"time.minutes" = "Минут"; 

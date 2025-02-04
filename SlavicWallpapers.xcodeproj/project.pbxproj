@@ -1,0 +1,572 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		A8D84D7E2D52990800177341 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A8D84D622D52990700177341 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8D84D692D52990700177341;
+			remoteInfo = SlavicWallpapers;
+		};
+		A8D84D882D52990800177341 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A8D84D622D52990700177341 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8D84D692D52990700177341;
+			remoteInfo = SlavicWallpapers;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A8D84D6A2D52990700177341 /* SlavicWallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlavicWallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8D84D7D2D52990800177341 /* SlavicWallpapersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlavicWallpapersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8D84D872D52990800177341 /* SlavicWallpapersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlavicWallpapersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A8D84D9B2D5299BB00177341 /* Exceptions for "SlavicWallpapers" folder in "SlavicWallpapers" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A8D84D692D52990700177341 /* SlavicWallpapers */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A8D84D6C2D52990700177341 /* SlavicWallpapers */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A8D84D9B2D5299BB00177341 /* Exceptions for "SlavicWallpapers" folder in "SlavicWallpapers" target */,
+			);
+			path = SlavicWallpapers;
+			sourceTree = "<group>";
+		};
+		A8D84D802D52990800177341 /* SlavicWallpapersTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SlavicWallpapersTests;
+			sourceTree = "<group>";
+		};
+		A8D84D8A2D52990800177341 /* SlavicWallpapersUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SlavicWallpapersUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A8D84D672D52990700177341 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8D84D7A2D52990800177341 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8D84D842D52990800177341 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A8D84D612D52990700177341 = {
+			isa = PBXGroup;
+			children = (
+				A8D84D6C2D52990700177341 /* SlavicWallpapers */,
+				A8D84D802D52990800177341 /* SlavicWallpapersTests */,
+				A8D84D8A2D52990800177341 /* SlavicWallpapersUITests */,
+				A8D84D6B2D52990700177341 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A8D84D6B2D52990700177341 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A8D84D6A2D52990700177341 /* SlavicWallpapers.app */,
+				A8D84D7D2D52990800177341 /* SlavicWallpapersTests.xctest */,
+				A8D84D872D52990800177341 /* SlavicWallpapersUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A8D84D692D52990700177341 /* SlavicWallpapers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8D84D912D52990800177341 /* Build configuration list for PBXNativeTarget "SlavicWallpapers" */;
+			buildPhases = (
+				A8D84D662D52990700177341 /* Sources */,
+				A8D84D672D52990700177341 /* Frameworks */,
+				A8D84D682D52990700177341 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A8D84D6C2D52990700177341 /* SlavicWallpapers */,
+			);
+			name = SlavicWallpapers;
+			packageProductDependencies = (
+			);
+			productName = SlavicWallpapers;
+			productReference = A8D84D6A2D52990700177341 /* SlavicWallpapers.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A8D84D7C2D52990800177341 /* SlavicWallpapersTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8D84D942D52990800177341 /* Build configuration list for PBXNativeTarget "SlavicWallpapersTests" */;
+			buildPhases = (
+				A8D84D792D52990800177341 /* Sources */,
+				A8D84D7A2D52990800177341 /* Frameworks */,
+				A8D84D7B2D52990800177341 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A8D84D7F2D52990800177341 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A8D84D802D52990800177341 /* SlavicWallpapersTests */,
+			);
+			name = SlavicWallpapersTests;
+			packageProductDependencies = (
+			);
+			productName = SlavicWallpapersTests;
+			productReference = A8D84D7D2D52990800177341 /* SlavicWallpapersTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A8D84D862D52990800177341 /* SlavicWallpapersUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8D84D972D52990800177341 /* Build configuration list for PBXNativeTarget "SlavicWallpapersUITests" */;
+			buildPhases = (
+				A8D84D832D52990800177341 /* Sources */,
+				A8D84D842D52990800177341 /* Frameworks */,
+				A8D84D852D52990800177341 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A8D84D892D52990800177341 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A8D84D8A2D52990800177341 /* SlavicWallpapersUITests */,
+			);
+			name = SlavicWallpapersUITests;
+			packageProductDependencies = (
+			);
+			productName = SlavicWallpapersUITests;
+			productReference = A8D84D872D52990800177341 /* SlavicWallpapersUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A8D84D622D52990700177341 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					A8D84D692D52990700177341 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					A8D84D7C2D52990800177341 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = A8D84D692D52990700177341;
+					};
+					A8D84D862D52990800177341 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = A8D84D692D52990700177341;
+					};
+				};
+			};
+			buildConfigurationList = A8D84D652D52990700177341 /* Build configuration list for PBXProject "SlavicWallpapers" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ru,
+			);
+			mainGroup = A8D84D612D52990700177341;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A8D84D6B2D52990700177341 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A8D84D692D52990700177341 /* SlavicWallpapers */,
+				A8D84D7C2D52990800177341 /* SlavicWallpapersTests */,
+				A8D84D862D52990800177341 /* SlavicWallpapersUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A8D84D682D52990700177341 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8D84D7B2D52990800177341 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8D84D852D52990800177341 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A8D84D662D52990700177341 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8D84D792D52990800177341 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8D84D832D52990800177341 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A8D84D7F2D52990800177341 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8D84D692D52990700177341 /* SlavicWallpapers */;
+			targetProxy = A8D84D7E2D52990800177341 /* PBXContainerItemProxy */;
+		};
+		A8D84D892D52990800177341 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8D84D692D52990700177341 /* SlavicWallpapers */;
+			targetProxy = A8D84D882D52990800177341 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A8D84D8F2D52990800177341 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A8D84D902D52990800177341 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		A8D84D922D52990800177341 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SlavicWallpapers/SlavicWallpapers.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SlavicWallpapers/Preview Content\"";
+				DEVELOPMENT_TEAM = S3DKN9HQ5L;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SlavicWallpapers/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iiiivaska.SlavicWallpapers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A8D84D932D52990800177341 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SlavicWallpapers/SlavicWallpapers.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SlavicWallpapers/Preview Content\"";
+				DEVELOPMENT_TEAM = S3DKN9HQ5L;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SlavicWallpapers/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iiiivaska.SlavicWallpapers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A8D84D952D52990800177341 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S3DKN9HQ5L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iiiivaska.SlavicWallpapersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlavicWallpapers.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SlavicWallpapers";
+			};
+			name = Debug;
+		};
+		A8D84D962D52990800177341 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S3DKN9HQ5L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iiiivaska.SlavicWallpapersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlavicWallpapers.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SlavicWallpapers";
+			};
+			name = Release;
+		};
+		A8D84D982D52990800177341 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S3DKN9HQ5L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iiiivaska.SlavicWallpapersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SlavicWallpapers;
+			};
+			name = Debug;
+		};
+		A8D84D992D52990800177341 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S3DKN9HQ5L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iiiivaska.SlavicWallpapersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SlavicWallpapers;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A8D84D652D52990700177341 /* Build configuration list for PBXProject "SlavicWallpapers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8D84D8F2D52990800177341 /* Debug */,
+				A8D84D902D52990800177341 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8D84D912D52990800177341 /* Build configuration list for PBXNativeTarget "SlavicWallpapers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8D84D922D52990800177341 /* Debug */,
+				A8D84D932D52990800177341 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8D84D942D52990800177341 /* Build configuration list for PBXNativeTarget "SlavicWallpapersTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8D84D952D52990800177341 /* Debug */,
+				A8D84D962D52990800177341 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8D84D972D52990800177341 /* Build configuration list for PBXNativeTarget "SlavicWallpapersUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8D84D982D52990800177341 /* Debug */,
+				A8D84D992D52990800177341 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A8D84D622D52990700177341 /* Project object */;
+}
