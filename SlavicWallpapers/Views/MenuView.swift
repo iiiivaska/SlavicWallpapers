@@ -101,6 +101,7 @@ struct MenuView: View {
                     .padding(.vertical, 4)
 
                 WallpaperModeMenu(appState: appState, animation: animation)
+                
 
                 MenuButton(title: Localizable.Menu.quit, icon: "power") {
                     NSApplication.shared.terminate(nil)
@@ -121,7 +122,7 @@ struct MenuView: View {
 struct WallpaperModeMenu: View {
     @ObservedObject var appState: AppState
     var animation: Namespace.ID
-
+    
     var body: some View {
         Menu {
             ForEach(WallpaperMode.allCases, id: \.self) { mode in
