@@ -24,7 +24,6 @@ jobs:
         xcodebuild test \
           -scheme SlavicWallpapers \
           -destination 'platform=macOS' \
-          -enableCodeCoverage YES \
           CODE_SIGN_IDENTITY=- \
           CODE_SIGNING_REQUIRED=NO \
           CODE_SIGNING_ALLOWED=NO \
@@ -36,12 +35,6 @@ jobs:
       with:
         name: test-results
         path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/**/*.xcresult
-        
-    - name: Upload Coverage
-      uses: codecov/codecov-action@v4
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        fail_ci_if_error: true
 
   lint:
     name: SwiftLint
