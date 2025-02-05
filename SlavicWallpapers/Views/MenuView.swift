@@ -4,6 +4,10 @@ struct MenuView: View {
     @StateObject private var appState = AppState.shared
     @Namespace private var animation
 
+    private var updateIntervalDescription: String {
+        StringFormatting.intervalDescription(for: appState.updateInterval)
+    }
+
     var body: some View {
         VStack(spacing: 12) {
             Header()
@@ -33,12 +37,13 @@ struct MenuView: View {
             VStack(spacing: 8) {
                 MenuButton(
                     title: Localizable.Menu.updateWallpaper,
-                    icon: "arrow.clockwise"
-                ) {
-                    withAnimation {
-                        appState.updateWallpaper()
+                    icon: "arrow.clockwise",
+                    action: {
+                        withAnimation {
+                            appState.updateWallpaper()
+                        }
                     }
-                }
+                )
                 .accessibilityIdentifier("updateWallpaperButton")
                 .disabled(appState.isUpdating)
                 .overlay {
@@ -54,45 +59,53 @@ struct MenuView: View {
                 }
 
                 Group {
-                    MenuButton(title: Localizable.Menu.openFolder, icon: "folder") {
-                        Task {
-                            await appState.openWallpapersFolder()
+                    MenuButton(
+                        title: Localizable.Menu.openFolder,
+                        icon: "folder",
+                        action: {
+                            Task {
+                                await appState.openWallpapersFolder()
+                            }
                         }
-                    }
+                    )
                     .accessibilityIdentifier(AccessibilityIdentifiers.openFolderButton)
 
                     MenuButton(
                         title: Localizable.Menu.backgroundUpdate,
-                        icon: appState.isBackgroundEnabled ? "clock.fill" : "clock"
-                    ) {
-                        withAnimation {
-                            appState.toggleBackgroundUpdates()
+                        icon: appState.isBackgroundEnabled ? "clock.fill" : "clock",
+                        action: {
+                            withAnimation {
+                                appState.toggleBackgroundUpdates()
+                            }
                         }
-                    }
+                    )
                     .accessibilityIdentifier(AccessibilityIdentifiers.backgroundUpdateButton)
 
                     if appState.isBackgroundEnabled {
                         MenuButton(
-                            title: "\(Localizable.Time.updateInterval): " +
-                                "\(appState.updateInterval.localizedDescription)",
-                            icon: "clock.arrow.2.circlepath"
-                        ) {
-                            appState.showingIntervalPicker = true
-                        }
+                            title: StringFormatting.menuIntervalDescription(for: appState.updateInterval),
+                            icon: "clock.arrow.2.circlepath",
+                            action: {
+                                appState.showingIntervalPicker = true
+                            }
+                        )
                         .accessibilityIdentifier(AccessibilityIdentifiers.updateIntervalButton)
-                        .popover(isPresented: $appState.showingIntervalPicker) {
-                            UpdateIntervalView(
-                                interval: .init(
-                                    get: { appState.updateInterval },
-                                    set: { interval in
-                                        Task {
-                                            await appState.setUpdateInterval(interval)
+                        .popover(
+                            isPresented: $appState.showingIntervalPicker,
+                            content: {
+                                UpdateIntervalView(
+                                    interval: .init(
+                                        get: { appState.updateInterval },
+                                        set: { interval in
+                                            Task {
+                                                await appState.setUpdateInterval(interval)
+                                            }
                                         }
-                                    }
-                                ),
-                                onDismiss: { appState.showingIntervalPicker = false }
-                            )
-                        }
+                                    ),
+                                    onDismiss: { appState.showingIntervalPicker = false }
+                                )
+                            }
+                        )
                     }
                 }
                 .transition(.scale.combined(with: .opacity))
@@ -102,9 +115,13 @@ struct MenuView: View {
 
                 WallpaperModeMenu(appState: appState, animation: animation)
 
-                MenuButton(title: Localizable.Menu.quit, icon: "power") {
-                    NSApplication.shared.terminate(nil)
-                }
+                MenuButton(
+                    title: Localizable.Menu.quit,
+                    icon: "power",
+                    action: {
+                        NSApplication.shared.terminate(nil)
+                    }
+                )
                 .accessibilityIdentifier(AccessibilityIdentifiers.quitButton)
             }
             .padding(.horizontal)
@@ -146,7 +163,7 @@ struct WallpaperModeMenu: View {
                 .disabled(appState.isUpdating)
             }
         }, label: {
-            Button(action: { }, label: {
+            Button(action: {}, label: {
                 HStack {
                     Text("\(Localizable.Menu.wallpaperMode): \(appState.wallpaperMode.localizedName)")
                     Image(systemName: "rectangle.split.2x1")

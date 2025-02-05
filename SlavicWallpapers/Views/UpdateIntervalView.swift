@@ -38,16 +38,15 @@ struct UpdateIntervalView: View {
             }
             .padding()
 
-            Text(UpdateInterval(hours: Int(hours), minutes: Int(minutes)).localizedDescription)
+            Text(getCurrentIntervalDescription())
                 .foregroundColor(.secondary)
 
             HStack {
                 Button("OK") {
-                    interval = UpdateInterval(hours: Int(hours), minutes: Int(minutes))
+                    interval = calculateInterval()
                     onDismiss()
                 }
                 .keyboardShortcut(.defaultAction)
-                .disabled(hours == 0 && minutes < 30)
                 .accessibilityIdentifier("okButton")
 
                 Button("Cancel") {
@@ -60,6 +59,15 @@ struct UpdateIntervalView: View {
         }
         .padding()
         .frame(width: 300)
+    }
+
+    private func getCurrentIntervalDescription() -> String {
+        let currentInterval = UpdateInterval(hours: Int(hours), minutes: Int(minutes))
+        return StringFormatting.intervalDescription(for: currentInterval)
+    }
+
+    private func calculateInterval() -> UpdateInterval {
+        UpdateInterval(hours: Int(hours), minutes: Int(minutes))
     }
 }
 
@@ -85,4 +93,11 @@ private struct IntervalSlider: View {
                 .animation(.spring(duration: 0.2), value: value)
         }
     }
+}
+
+#Preview {
+    UpdateIntervalView(
+        interval: .constant(UpdateInterval(hours: 1, minutes: 0)),
+        onDismiss: {}
+    )
 }
