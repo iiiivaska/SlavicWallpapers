@@ -25,6 +25,9 @@ jobs:
           -scheme SlavicWallpapers \
           -destination 'platform=macOS' \
           -enableCodeCoverage YES \
+          CODE_SIGN_IDENTITY=- \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO \
           | xcpretty && exit ${PIPESTATUS[0]}
     
     - name: Upload Test Results
