@@ -1,0 +1,45 @@
+# Включенные правила
+opt_in_rules:
+  - empty_count
+  - missing_docs
+  - closure_spacing
+  - explicit_init
+  - force_unwrapping
+  - line_length
+  - trailing_whitespace
+  - identifier_name
+  
+# Исключенные пути
+excluded:
+  - Pods
+  - Package.swift
+  - .build
+  - DerivedData
+  - .git
+  - fastlane
+  - SlavicWallpapersTests
+  
+# Настройки правил
+line_length:
+  warning: 100
+  error: 120
+  ignores_comments: true
+  ignores_urls: false
+  
+type_name:
+  min_length: 3
+  max_length:
+    warning: 50
+    error: 60
+    
+file_length:
+  warning: 500
+  error: 1000
+  
+function_body_length:
+  warning: 50
+  error: 100
+  
+cyclomatic_complexity:
+  warning: 10
+  error: 20 

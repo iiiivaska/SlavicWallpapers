@@ -65,7 +65,8 @@ struct MenuView: View {
 
                     if appState.isBackgroundEnabled {
                         MenuButton(
-                            title: "\(Localizable.Time.updateInterval): \(appState.updateInterval.localizedDescription)",
+                            title: "\(Localizable.Time.updateInterval): " +
+                                "\(appState.updateInterval.localizedDescription)",
                             icon: "clock.arrow.2.circlepath"
                         ) {
                             appState.showingIntervalPicker = true
@@ -91,7 +92,7 @@ struct MenuView: View {
                 Divider()
                     .padding(.vertical, 4)
 
-                Menu {
+                Menu(content: {
                     ForEach(WallpaperMode.allCases, id: \.self) { mode in
                         Button(action: {
                             Task {
@@ -109,11 +110,14 @@ struct MenuView: View {
                         }
                         .disabled(appState.isUpdating)
                     }
-                } label: {
-                    MenuButton(title: "\(Localizable.Menu.wallpaperMode): \(appState.wallpaperMode.localizedName)",
-                               icon: "rectangle.split.2x1") {
+                }, label: {
+                    MenuButton(
+                        title: "\(Localizable.Menu.wallpaperMode): " +
+                            "\(appState.wallpaperMode.localizedName)",
+                        icon: "rectangle.split.2x1"
+                    ) {
                     }
-                }
+                })
 
                 MenuButton(title: Localizable.Menu.quit, icon: "power") {
                     NSApplication.shared.terminate(nil)
