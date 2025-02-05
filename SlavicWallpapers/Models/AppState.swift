@@ -36,15 +36,15 @@ final class AppState: ObservableObject {
 
     func updateWallpaper() {
         guard !isUpdating else { return }
-        
+
         Task { @MainActor in
             isUpdating = true
             error = nil
-            
+
             do {
                 let imageUrl = try await ImageService.shared.downloadAndCacheImage()
                 try await WallpaperManager.shared.setWallpaper(from: imageUrl)
-                
+
                 self.isUpdating = false
                 self.lastUpdate = Date()
                 await BackgroundService.shared.updateLastUpdateTime()

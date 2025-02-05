@@ -23,16 +23,16 @@ enum WallpaperError: Error {
 /// ```
 actor WallpaperManager {
     static let shared = WallpaperManager()
-    
+
     private let workspace: NSWorkspace
     private let userDefaults: UserDefaults
     private let wallpaperModeKey = "WallpaperMode"
-    
+
     private init() {
         self.workspace = .shared
         self.userDefaults = .standard
     }
-    
+
     var wallpaperMode: WallpaperMode {
         get {
             if let savedMode = userDefaults.string(forKey: wallpaperModeKey),
@@ -45,7 +45,7 @@ actor WallpaperManager {
             userDefaults.set(newValue.rawValue, forKey: wallpaperModeKey)
         }
     }
-    
+
     func setWallpaper(from url: URL) async throws {
         switch wallpaperMode {
         case .same:
@@ -54,7 +54,7 @@ actor WallpaperManager {
             try await setDifferentWallpapers()
         }
     }
-    
+
     private func setSameWallpaper(from url: URL) async throws {
         guard FileManager.default.fileExists(atPath: url.path) else {
             throw AppError.fileNotFound
