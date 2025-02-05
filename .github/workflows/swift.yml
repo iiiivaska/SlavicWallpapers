@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: UI Tests
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,7 +17,7 @@ jobs:
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.2'
+          xcode-version: '15.2'
 
       - name: Build the app
         run: |
@@ -34,14 +34,14 @@ jobs:
           xcodebuild test \
             -project SlavicWallpapers.xcodeproj \
             -scheme SlavicWallpapersUITests \
-            -destination 'platform=macOS' \
+            -destination 'platform=macOS,arch=arm64' \
             CODE_SIGN_IDENTITY=- \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO
 
   test:
     name: Run Tests
-    runs-on: macos-latest
+    runs-on: macos-14
     
     steps:
     - uses: actions/checkout@v4
@@ -49,13 +49,13 @@ jobs:
     - name: Set Xcode Version
       uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: latest-stable
+        xcode-version: '15.2'
     
     - name: Build and Test
       run: |
         xcodebuild test \
           -scheme SlavicWallpapers \
-          -destination 'platform=macOS' \
+          -destination 'platform=macOS,arch=arm64' \
           CODE_SIGN_IDENTITY=- \
           CODE_SIGNING_REQUIRED=NO \
           CODE_SIGNING_ALLOWED=NO \
