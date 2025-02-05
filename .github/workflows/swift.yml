@@ -11,10 +11,10 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Xcode
-        uses: maxim-lobanov/setup-xcode@v2
+        uses: maxim-lobanov/setup-xcode@v4
         with:
           xcode-version: '14.2'
 
