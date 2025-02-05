@@ -1,5 +1,19 @@
 import Foundation
 
+/// Централизованное хранилище локализованных строк.
+///
+/// Обеспечивает доступ ко всем локализованным строкам приложения.
+///
+/// ## Разделы
+/// - General: Общие строки
+/// - Menu: Элементы меню
+/// - Error: Сообщения об ошибках
+/// - Time: Временные метки
+///
+/// ## Пример использования
+/// ```swift
+/// Text(Localizable.Menu.updateWallpaper)
+/// ```
 enum Localizable {
     enum General {
         static let appName = NSLocalizedString("app.name", comment: "Application name")

@@ -1,6 +1,20 @@
 import Foundation
 
-actor ImageService {
+/// Сервис для работы с изображениями.
+///
+/// Управляет загрузкой, кэшированием и хранением изображений.
+///
+/// ## Возможности
+/// - Загрузка изображений
+/// - Локальное кэширование
+/// - Управление хранилищем
+///
+/// ## Пример использования
+/// ```swift
+/// let service = ImageService.shared
+/// let imageUrl = try await service.downloadAndCacheImage()
+/// ```
+final class ImageService {
     static let shared = ImageService()
 
     private let fileManager: FileManager

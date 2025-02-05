@@ -1,7 +1,23 @@
 import SwiftUI
 
+/// Главное состояние приложения, управляющее всеми основными функциями.
+///
+/// `AppState` является единственным источником истины для состояния приложения,
+/// реализуя паттерн Singleton для глобального доступа.
+///
+/// ## Основные возможности
+/// - Управление режимом обоев
+/// - Контроль фонового обновления
+/// - Обработка ошибок
+/// - Управление интервалом обновления
+///
+/// ## Пример использования
+/// ```swift
+/// let appState = AppState.shared
+/// await appState.updateWallpaper()
+/// ```
 @MainActor
-class AppState: ObservableObject {
+final class AppState: ObservableObject {
     static let shared = AppState()
 
     @Published var isUpdating = false

@@ -1,5 +1,18 @@
 import Foundation
 
+/// Интервал автоматического обновления обоев.
+///
+/// Определяет периодичность смены обоев в фоновом режиме.
+///
+/// ## Ограничения
+/// - Минимум: 30 минут
+/// - Максимум: 24 часа
+///
+/// ## Пример использования
+/// ```swift
+/// let interval = UpdateInterval(hours: 2, minutes: 30)
+/// await appState.setUpdateInterval(interval)
+/// ```
 struct UpdateInterval: Codable, Equatable {
     var hours: Int
     var minutes: Int
