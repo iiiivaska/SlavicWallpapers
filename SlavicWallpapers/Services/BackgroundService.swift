@@ -1,14 +1,36 @@
 import Foundation
 
+protocol AppStateProtocol {
+    func updateWallpaper() async
+}
+
+extension AppState: AppStateProtocol {}
+
 actor BackgroundService {
     static let shared = BackgroundService()
 
-    private var timer: Timer?
     private let userDefaults: UserDefaults
+    private let appState: AppStateProtocol
     private let updateIntervalKey = "UpdateInterval"
+    private let checkInterval: TimeInterval = 60 // Проверяем каждую минуту
+    private let lastUpdateKey = "LastWallpaperUpdate"
+
+    @MainActor
+    private var mainTimer: Timer? {
+        didSet {
+            oldValue?.invalidate()
+        }
+    }
 
     private init() {
         self.userDefaults = .standard
+        self.appState = AppState.shared // Инициализируем сразу
+    }
+
+    // Internal for testing
+    init(userDefaults: UserDefaults, appState: AppStateProtocol) {
+        self.userDefaults = userDefaults
+        self.appState = appState
     }
 
     var updateInterval: UpdateInterval {
@@ -26,48 +48,68 @@ actor BackgroundService {
         }
     }
 
-    func startBackgroundUpdates() {
-        stopBackgroundUpdates()
+    func startBackgroundUpdates() async {
+        await stopBackgroundUpdates()
 
-        // Проверяем, нужно ли обновить обои
+        // Проверяем при запуске
         if shouldUpdateWallpaper() {
-            Task {
-                await AppState.shared.updateWallpaper()
-            }
+            await appState.updateWallpaper()
+            updateLastUpdateTime()
         }
 
-        // Запускаем таймер
-        timer = Timer.scheduledTimer(withTimeInterval: updateInterval.timeInterval, repeats: true) { _ in
-            Task {
-                await AppState.shared.updateWallpaper()
-            }
-        }
+        await startTimer()
     }
 
-    private func shouldUpdateWallpaper() -> Bool {
-        guard let lastUpdate = userDefaults.object(forKey: "LastWallpaperUpdate") as? Date else {
-            return true // Если нет сохраненной даты, обновляем
+    @MainActor
+    private func startTimer() {
+        let timer = Timer.scheduledTimer(withTimeInterval: checkInterval, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            Task {
+                if await self.shouldUpdateWallpaper() {
+                    await self.appState.updateWallpaper()
+                    await self.updateLastUpdateTime()
+                }
+            }
+        }
+        mainTimer = timer
+        RunLoop.main.add(timer, forMode: .common)
+    }
+
+    func shouldUpdateWallpaper() -> Bool {
+        guard let lastUpdate = userDefaults.object(forKey: lastUpdateKey) as? Date else {
+            return true // Если нет сохраненной даты, нужно обновить
         }
 
-        let timeSinceLastUpdate = Date().timeIntervalSince(lastUpdate)
-        return timeSinceLastUpdate >= updateInterval.timeInterval
+        let now = Date()
+        let timeSinceLastUpdate = now.timeIntervalSince(lastUpdate)
+        let nextUpdateTime = lastUpdate.addingTimeInterval(updateInterval.timeInterval)
+
+        return now >= nextUpdateTime && timeSinceLastUpdate >= updateInterval.timeInterval
     }
 
     func updateLastUpdateTime() {
-        userDefaults.set(Date(), forKey: "LastWallpaperUpdate")
+        userDefaults.set(Date(), forKey: lastUpdateKey)
     }
 
+    @MainActor
     func stopBackgroundUpdates() {
-        timer?.invalidate()
-        timer = nil
+        mainTimer = nil
     }
 
-    func setUpdateInterval(_ interval: UpdateInterval) {
+    func setUpdateInterval(_ interval: UpdateInterval) async {
         updateInterval = interval
         // Перезапускаем таймер с новым интервалом
-        if timer != nil {
-            stopBackgroundUpdates()
-            startBackgroundUpdates()
+        let hasTimer = await MainActor.run { self.mainTimer != nil }
+        if hasTimer {
+            await stopBackgroundUpdates()
+            await startBackgroundUpdates()
+        }
+    }
+
+    // Internal for testing purposes only
+    var isTimerActive: Bool {
+        get async {
+            await MainActor.run { self.mainTimer != nil }
         }
     }
 }

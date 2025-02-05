@@ -28,4 +28,12 @@
 "time.hours_and_minutes" = "%d часов %d минут";
 "time.update_interval" = "Интервал обновления";
 "time.hours" = "Часов";
-"time.minutes" = "Минут"; 
+"time.minutes" = "Минут";
+"hour" = "час";
+"hours" = "часов";
+"minute" = "минута";
+"minutes" = "минут";
+"hours_few" = "часа";
+"minutes_few" = "минуты";
+"every" = "Каждые";
+"update_interval_with_time" = "Обновление: %@"; 
