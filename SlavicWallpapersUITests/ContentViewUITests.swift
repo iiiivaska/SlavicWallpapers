@@ -1,6 +1,15 @@
 import XCTest
 @testable import SlavicWallpapers
 
+/// UI тесты основного интерфейса.
+///
+/// Проверяет взаимодействие пользователя с приложением.
+///
+/// ## Тесты
+/// - Отображение меню
+/// - Работа с настройками
+/// - Смена режимов
+/// - Управление интервалами
 final class ContentViewUITests: XCTestCase {
     var app: XCUIApplication!
 

@@ -1,5 +1,20 @@
 import Foundation
 
+/// Изолированный актор для работы с сетевыми запросами.
+///
+/// `APIClient` обеспечивает потокобезопасный доступ к сетевым ресурсам,
+/// используя систему акторов Swift для синхронизации.
+///
+/// ## Возможности
+/// - Безопасные асинхронные запросы
+/// - Изоляция состояния
+/// - Обработка сетевых ошибок
+///
+/// ## Пример использования
+/// ```swift
+/// let client = APIClient.shared
+/// try await client.fetch(endpoint: .randomImage)
+/// ```
 actor APIClient: APIClientProtocol {
     static let shared = APIClient()
 
