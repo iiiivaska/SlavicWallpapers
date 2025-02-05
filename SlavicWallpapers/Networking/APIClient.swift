@@ -20,73 +20,65 @@ actor APIClient: APIClientProtocol {
 
     private let session: URLSessionProtocol
     private let decoder: JSONDecoder
+    private let baseURL = "http://localhost:8080"
 
-    private init() {
-        let config = URLSessionConfiguration.default
-        config.requestCachePolicy = .reloadIgnoringLocalCacheData
-        config.timeoutIntervalForRequest = NetworkConfig.defaultTimeout
-        config.timeoutIntervalForResource = NetworkConfig.defaultTimeout
-        config.httpAdditionalHeaders = [
-            NetworkConfig.Headers.authorization: "\(NetworkConfig.Headers.clientId) \(APIConfig.unsplashAccessKey)",
-            NetworkConfig.Headers.contentType: NetworkConfig.ContentType.json,
-            NetworkConfig.Headers.accept: NetworkConfig.ContentType.json
-        ]
-
-        self.session = URLSession(configuration: config)
-        self.decoder = JSONDecoder()
-    }
-
-    // Internal for testing purposes only
-    init(session: URLSessionProtocol) {
+    init(session: URLSessionProtocol = URLSession.shared) {
         self.session = session
         self.decoder = JSONDecoder()
     }
 
-    func fetchRandomPhoto(retryCount: Int = 0) async throws -> UnsplashPhoto {
-        do {
-            return try await fetchRandomPhotoInternal()
-        } catch {
-            if retryCount < NetworkConfig.maxRetryAttempts {
+    func fetchRandomPhoto() async throws -> WallpaperResponse {
+        let url = URL(string: "\(baseURL)/wallpaper").require()
+
+        var attempts = 0
+        while attempts <= NetworkConfig.maxRetryAttempts {
+            do {
+                let (data, response) = try await session.data(from: url)
+
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    throw AppError.networkUnavailable
+                }
+
+                guard httpResponse.statusCode == 200 else {
+                    throw AppError.networkUnavailable
+                }
+
+                let wallpaper = try JSONDecoder().decode(WallpaperResponse.self, from: data)
+                return wallpaper
+            } catch {
+                attempts += 1
+                if attempts > NetworkConfig.maxRetryAttempts {
+                    throw AppError.maxRetryAttemptsReached
+                }
                 try await Task.sleep(nanoseconds: UInt64(NetworkConfig.retryDelay * 1_000_000_000))
-                return try await fetchRandomPhoto(retryCount: retryCount + 1)
-            } else {
-                throw AppError.maxRetryAttemptsReached
             }
         }
+        throw AppError.maxRetryAttemptsReached
     }
 
-    private func fetchRandomPhotoInternal() async throws -> UnsplashPhoto {
-        let endpoint = UnsplashEndpoint.randomPhoto(
-            orientation: "landscape",
-            query: "slavic landscape nature",
-            contentFilter: "high"
-        )
+    func downloadImage(from urlPath: String) async throws -> Data {
+        let fullURL = URL(string: "\(baseURL)\(urlPath)").require()
 
-        return try await performRequest(endpoint: endpoint)
-    }
+        var attempts = 0
+        while attempts <= NetworkConfig.maxRetryAttempts {
+            do {
+                let (data, response) = try await session.data(from: fullURL)
 
-    func downloadImage(from url: URL, retryCount: Int = 0) async throws -> Data {
-        do {
-            return try await downloadImageInternal(from: url)
-        } catch {
-            if retryCount < NetworkConfig.maxRetryAttempts {
+                guard let httpResponse = response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else {
+                    throw AppError.networkUnavailable
+                }
+
+                return data
+            } catch {
+                attempts += 1
+                if attempts > NetworkConfig.maxRetryAttempts {
+                    throw AppError.maxRetryAttemptsReached
+                }
                 try await Task.sleep(nanoseconds: UInt64(NetworkConfig.retryDelay * 1_000_000_000))
-                return try await downloadImage(from: url, retryCount: retryCount + 1)
-            } else {
-                throw AppError.maxRetryAttemptsReached
             }
         }
-    }
-
-    private func downloadImageInternal(from url: URL) async throws -> Data {
-        let (data, response) = try await session.data(from: url)
-
-        guard let httpResponse = response as? HTTPURLResponse,
-              (200...299).contains(httpResponse.statusCode) else {
-            throw AppError.imageDownloadFailed
-        }
-
-        return data
+        throw AppError.maxRetryAttemptsReached
     }
 
     private func performRequest<T: Decodable>(endpoint: UnsplashEndpoint) async throws -> T {
