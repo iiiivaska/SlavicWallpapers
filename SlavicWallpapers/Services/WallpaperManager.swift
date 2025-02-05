@@ -25,8 +25,8 @@ actor WallpaperManager {
     static let shared = WallpaperManager()
 
     // Internal for testing purposes only
-    let workspace: NSWorkspace
-    let userDefaults: UserDefaults
+    var workspace: NSWorkspace
+    var userDefaults: UserDefaults
 
     private let wallpaperModeKey = "WallpaperMode"
 
