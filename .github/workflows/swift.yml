@@ -33,9 +33,58 @@ jobs:
     - name: Install XcodeGen
       run: brew install xcodegen
     
+    - name: Create Project Config
+      run: |
+        cat > project.yml << 'EOL'
+        name: SlavicWallpapers
+        options:
+          bundleIdPrefix: com.iiiivaska
+          deploymentTarget:
+            macOS: 14.0
+        
+        targets:
+          SlavicWallpapers:
+            type: application
+            platform: macOS
+            sources:
+              - SlavicWallpapers
+            settings:
+              base:
+                INFOPLIST_FILE: SlavicWallpapers/Info.plist
+            dependencies:
+              - sdk: SwiftUI.framework
+              - sdk: AppKit.framework
+        
+          SlavicWallpapersTests:
+            type: bundle.unit-test
+            platform: macOS
+            sources:
+              - SlavicWallpapersTests
+            dependencies:
+              - target: SlavicWallpapers
+        
+          SlavicWallpapersUITests:
+            type: bundle.ui-testing
+            platform: macOS
+            sources:
+              - SlavicWallpapersUITests
+            dependencies:
+              - target: SlavicWallpapers
+        
+        schemes:
+          SlavicWallpapers:
+            build:
+              targets:
+                SlavicWallpapers: all
+            test:
+              targets:
+                - name: SlavicWallpapersTests
+                - name: SlavicWallpapersUITests
+        EOL
+    
     - name: Create Xcode Project
       run: xcodegen generate
-        
+    
     - name: Build
       run: |
         xcodebuild \
