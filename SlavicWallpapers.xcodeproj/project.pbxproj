@@ -24,12 +24,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A83D7AB32D52FB430064CE1A /* SlavicWallpapersUITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SlavicWallpapersUITests.xctestplan; sourceTree = "<group>"; };
 		A8D84D6A2D52990700177341 /* SlavicWallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlavicWallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D84D7D2D52990800177341 /* SlavicWallpapersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlavicWallpapersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D84D872D52990800177341 /* SlavicWallpapersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlavicWallpapersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A83D7AB72D52FCD40064CE1A /* Exceptions for "SlavicWallpapers" folder in "SlavicWallpapersUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/WallpaperMode.swift,
+				Utilities/AccessibilityIdentifiers.swift,
+				Utilities/Localizable.swift,
+			);
+			target = A8D84D862D52990800177341 /* SlavicWallpapersUITests */;
+		};
 		A8D84D9B2D5299BB00177341 /* Exceptions for "SlavicWallpapers" folder in "SlavicWallpapers" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -44,6 +54,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				A8D84D9B2D5299BB00177341 /* Exceptions for "SlavicWallpapers" folder in "SlavicWallpapers" target */,
+				A83D7AB72D52FCD40064CE1A /* Exceptions for "SlavicWallpapers" folder in "SlavicWallpapersUITests" target */,
 			);
 			path = SlavicWallpapers;
 			sourceTree = "<group>";
@@ -88,6 +99,7 @@
 		A8D84D612D52990700177341 = {
 			isa = PBXGroup;
 			children = (
+				A83D7AB32D52FB430064CE1A /* SlavicWallpapersUITests.xctestplan */,
 				A8D84D6C2D52990700177341 /* SlavicWallpapers */,
 				A8D84D802D52990800177341 /* SlavicWallpapersTests */,
 				A8D84D8A2D52990800177341 /* SlavicWallpapersUITests */,

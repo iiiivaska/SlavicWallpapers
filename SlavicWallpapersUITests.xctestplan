@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "40FA1B67-7F6E-4B94-9F5A-2B18A77A1578",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "skippedTests" : [
+        "SlavicWallpapersUITests",
+        "SlavicWallpapersUITests\/testExample()",
+        "SlavicWallpapersUITests\/testLaunchPerformance()"
+      ],
+      "target" : {
+        "containerPath" : "container:SlavicWallpapers.xcodeproj",
+        "identifier" : "A8D84D862D52990800177341",
+        "name" : "SlavicWallpapersUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

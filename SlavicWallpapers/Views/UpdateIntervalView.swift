@@ -26,6 +26,7 @@ struct UpdateIntervalView: View {
                     step: 1,
                     title: Localizable.Time.hours
                 )
+                .accessibilityIdentifier("hoursSlider")
 
                 IntervalSlider(
                     value: $minutes,
@@ -33,6 +34,7 @@ struct UpdateIntervalView: View {
                     step: 5,
                     title: Localizable.Time.minutes
                 )
+                .accessibilityIdentifier("minutesSlider")
             }
             .padding()
 
@@ -46,11 +48,13 @@ struct UpdateIntervalView: View {
                 }
                 .keyboardShortcut(.defaultAction)
                 .disabled(hours == 0 && minutes < 30)
+                .accessibilityIdentifier("okButton")
 
                 Button("Cancel") {
                     onDismiss()
                 }
                 .keyboardShortcut(.cancelAction)
+                .accessibilityIdentifier("cancelButton")
             }
             .padding(.top)
         }
