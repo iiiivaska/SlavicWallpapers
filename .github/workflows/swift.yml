@@ -67,7 +67,7 @@ jobs:
             CODE_SIGNING_ALLOWED=NO
 
   test:
-    name: Run Tests
+    name: Build and Test
     runs-on: macos-latest
     
     steps:
