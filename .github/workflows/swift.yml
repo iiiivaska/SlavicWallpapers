@@ -7,8 +7,21 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
-    name: Build and Test
+  lint:
+    name: SwiftLint
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install SwiftLint
+      run: brew install swiftlint
+      
+    - name: Run SwiftLint
+      run: swiftlint lint --strict
+
+  unit-tests:
+    name: Unit Tests
     runs-on: macos-14
     
     steps:
@@ -17,27 +30,51 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -s /Applications/Xcode_15.2.app
     
-    - name: Install SwiftLint
-      run: brew install swiftlint
-      
-    - name: Run SwiftLint
-      run: swiftlint lint --strict
-      
+    - name: Create Xcode Project
+      run: |
+        xcodegen generate
+        
     - name: Build
-      run: xcodebuild build -scheme SlavicWallpapers -configuration Debug
+      run: |
+        xcodebuild \
+          -scheme SlavicWallpapers \
+          -configuration Debug \
+          -derivedDataPath Build/
       
     - name: Run Unit Tests
-      run: xcodebuild test -scheme SlavicWallpapers -configuration Debug -only-testing:SlavicWallpapersTests
-      
+      run: |
+        xcodebuild test \
+          -scheme SlavicWallpapers \
+          -configuration Debug \
+          -only-testing:SlavicWallpapersTests \
+          -derivedDataPath Build/
+
+  ui-tests:
+    name: UI Tests
+    runs-on: macos-14
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Select Xcode
+      run: sudo xcode-select -s /Applications/Xcode_15.2.app
+    
+    - name: Create Xcode Project
+      run: |
+        xcodegen generate
+        
     - name: Run UI Tests
       run: |
-        # Запускаем UI тесты с таймаутом и повторными попытками
         max_attempts=3
         attempt=1
         
         while [ $attempt -le $max_attempts ]; do
           echo "UI Test attempt $attempt of $max_attempts"
-          if xcodebuild test -scheme SlavicWallpapers -configuration Debug -only-testing:SlavicWallpapersUITests; then
+          if xcodebuild test \
+            -scheme SlavicWallpapers \
+            -configuration Debug \
+            -only-testing:SlavicWallpapersUITests \
+            -derivedDataPath Build/; then
             echo "UI Tests passed"
             exit 0
           fi
@@ -49,14 +86,16 @@ jobs:
         exit 1
 
   status-check:
-    needs: [test]
+    needs: [lint, unit-tests, ui-tests]
     runs-on: ubuntu-latest
     if: always()
     
     steps:
     - name: Check Status
       run: |
-        if [ "${{ needs.test.result }}" != "success" ]; then
-          echo "Tests failed"
+        if [ "${{ needs.lint.result }}" != "success" ] || 
+           [ "${{ needs.unit-tests.result }}" != "success" ] || 
+           [ "${{ needs.ui-tests.result }}" != "success" ]; then
+          echo "One or more checks failed"
           exit 1
         fi 
