@@ -1,12 +1,39 @@
-name: Swift Tests
+name: Swift
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+        
+    - name: Build
+      run: |
+        xcodebuild clean build -scheme SlavicWallpapers -configuration Debug
+
+    - name: Run tests
+      run: |
+        xcodebuild test -scheme SlavicWallpapers -configuration Debug -enableCodeCoverage YES
+
+    - name: Run SwiftLint
+      run: |
+        if which swiftlint >/dev/null; then
+          swiftlint
+        else
+          echo "warning: SwiftLint not installed"
+        fi
+
   uiTest:
     name: UI Tests
     runs-on: macos-15
