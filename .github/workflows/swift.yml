@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  uitest:
     name: UI Tests
     runs-on: macos-14
     steps:
@@ -34,7 +34,7 @@ jobs:
           xcodebuild test \
             -project SlavicWallpapers.xcodeproj \
             -scheme SlavicWallpapersUITests \
-            -destination 'platform=macOS,arch=arm64' \
+            -destination 'platform=macOS' \
             CODE_SIGN_IDENTITY=- \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO
@@ -55,7 +55,7 @@ jobs:
       run: |
         xcodebuild test \
           -scheme SlavicWallpapers \
-          -destination 'platform=macOS,arch=arm64' \
+          -destination 'platform=macOS' \
           CODE_SIGN_IDENTITY=- \
           CODE_SIGNING_REQUIRED=NO \
           CODE_SIGNING_ALLOWED=NO \
