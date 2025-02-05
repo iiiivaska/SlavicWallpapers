@@ -27,7 +27,7 @@ actor WallpaperManager {
     // Internal for testing purposes only
     let workspace: NSWorkspace
     let userDefaults: UserDefaults
-    
+
     private let wallpaperModeKey = "WallpaperMode"
 
     private init() {
