@@ -2,10 +2,15 @@ import SwiftUI
 
 struct MenuView: View {
     @StateObject private var appState = AppState.shared
+    @StateObject private var screenObserver = ScreenObserver.shared
     @Namespace private var animation
 
     private var updateIntervalDescription: String {
         StringFormatting.intervalDescription(for: appState.updateInterval)
+    }
+
+    private var hasMultipleScreens: Bool {
+        screenObserver.screensCount > 1
     }
 
     var body: some View {
@@ -110,10 +115,12 @@ struct MenuView: View {
                 }
                 .transition(.scale.combined(with: .opacity))
 
-                Divider()
-                    .padding(.vertical, 4)
+                if hasMultipleScreens {
+                    Divider()
+                        .padding(.vertical, 4)
 
-                WallpaperModeMenu(appState: appState, animation: animation)
+                    WallpaperModeMenu(appState: appState, animation: animation)
+                }
 
                 MenuButton(
                     title: Localizable.Menu.quit,
@@ -131,6 +138,7 @@ struct MenuView: View {
         .animation(.spring(duration: 0.3), value: appState.isUpdating)
         .animation(.spring(duration: 0.3), value: appState.error)
         .animation(.spring(duration: 0.3), value: appState.isBackgroundEnabled)
+        .animation(.spring(duration: 0.3), value: hasMultipleScreens)
     }
 }
 

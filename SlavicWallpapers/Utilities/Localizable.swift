@@ -70,5 +70,9 @@ enum Localizable {
             "update_interval_with_time",
             comment: "Update interval with time description"
         )
+        static let updateIntervalTitle = NSLocalizedString(
+            "update_interval_title",
+            comment: "Update interval selection title"
+        )
     }
 }

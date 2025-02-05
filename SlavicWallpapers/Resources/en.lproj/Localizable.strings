@@ -34,4 +34,5 @@
 "minute" = "minute";
 "minutes" = "minutes";
 "every" = "Every";
-"update_interval_with_time" = "Update: %@"; 
+"update_interval_with_time" = "Update: %@";
+"update_interval_title" = "Update Interval"; 

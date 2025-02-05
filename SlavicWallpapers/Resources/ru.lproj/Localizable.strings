@@ -36,4 +36,5 @@
 "hours_few" = "часа";
 "minutes_few" = "минуты";
 "every" = "Каждые";
-"update_interval_with_time" = "Обновление: %@"; 
+"update_interval_with_time" = "Обновление: %@";
+"update_interval_title" = "Интервал обновления"; 

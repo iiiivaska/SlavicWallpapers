@@ -16,7 +16,7 @@ struct UpdateIntervalView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            Text(Localizable.Time.updateInterval)
+            Text(Localizable.Time.updateIntervalTitle)
                 .font(.headline)
 
             VStack(spacing: 12) {
