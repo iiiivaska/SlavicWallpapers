@@ -9,12 +9,12 @@ enum WallpaperError: Error {
 actor WallpaperManager {
     static let shared = WallpaperManager()
     
-    private let workspace: NSWorkspace
-    private let userDefaults: UserDefaults
+    var workspace: NSWorkspace
+    var userDefaults: UserDefaults
     private let wallpaperModeKey = "WallpaperMode"
     
     private init() {
-        self.workspace = NSWorkspace.shared
+        self.workspace = .shared
         self.userDefaults = .standard
     }
     
