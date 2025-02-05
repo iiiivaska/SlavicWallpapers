@@ -1,0 +1,18 @@
+disabled_rules:
+  - trailing_whitespace
+  - line_length
+  
+opt_in_rules:
+  - empty_count
+  - missing_docs
+  
+excluded:
+  - Pods
+  - Package.swift
+  - .build
+
+identifier_name:
+  min_length: 2
+
+type_name:
+  min_length: 3

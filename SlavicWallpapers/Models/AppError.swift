@@ -8,7 +8,7 @@ enum AppError: LocalizedError {
     case wallpaperSetFailed
     case maxRetryAttemptsReached
     case fileNotFound
-    
+
     var errorDescription: String? {
         switch self {
         case .networkUnavailable:
@@ -27,4 +27,4 @@ enum AppError: LocalizedError {
             return Localizable.Error.fileNotFound
         }
     }
-} 
+}
