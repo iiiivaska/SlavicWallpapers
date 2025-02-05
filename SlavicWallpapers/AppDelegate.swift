@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
         if let statusButton = statusItem.button {
-            statusButton.image = NSImage(systemSymbolName: "photo.circle", accessibilityDescription: "Slavic Wallpaper")
+            statusButton.image = NSImage(named: "MenuBarIcon")
             statusButton.action = #selector(togglePopover)
             statusButton.target = self
         }

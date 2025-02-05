@@ -5,8 +5,10 @@ struct Header: View {
     
     var body: some View {
         VStack(spacing: 4) {
-            Image(systemName: "photo.circle")
-                .font(.system(size: 32))
+            Image("MenuBarIcon")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 64, height: 64)
                 .symbolEffect(.bounce, value: isRotating)
                 .onAppear {
                     isRotating.toggle()
