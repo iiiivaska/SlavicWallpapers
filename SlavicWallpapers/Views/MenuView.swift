@@ -123,7 +123,7 @@ struct WallpaperModeMenu: View {
     var animation: Namespace.ID
 
     var body: some View {
-        Menu {
+        Menu(content: {
             ForEach(WallpaperMode.allCases, id: \.self) { mode in
                 Button(
                     action: {
@@ -145,15 +145,15 @@ struct WallpaperModeMenu: View {
                 .accessibilityIdentifier("wallpaperMode.\(mode.rawValue)")
                 .disabled(appState.isUpdating)
             }
-        } label: {
-            Button(action: {}) {
+        }, label: {
+            Button(action: { }, label: {
                 HStack {
                     Text("\(Localizable.Menu.wallpaperMode): \(appState.wallpaperMode.localizedName)")
                     Image(systemName: "rectangle.split.2x1")
                 }
-            }
+            })
             .accessibilityIdentifier(AccessibilityIdentifiers.wallpaperModeButton)
-        }
+        })
     }
 }
 
