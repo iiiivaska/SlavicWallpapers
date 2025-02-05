@@ -4,10 +4,10 @@ struct MenuButton: View {
     let title: String
     let icon: String
     let action: () -> Void
-    
+
     @State private var isHovered = false
     @Environment(\.isEnabled) private var isEnabled
-    
+
     var body: some View {
         Button(action: action) {
             HStack {
@@ -34,4 +34,4 @@ struct MenuButton: View {
             isHovered = hovering
         }
     }
-} 
+}

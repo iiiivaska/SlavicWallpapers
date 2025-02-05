@@ -3,7 +3,7 @@ import SwiftUI
 @MainActor
 class AppState: ObservableObject {
     static let shared = AppState()
-    
+
     @Published var isUpdating = false
     @Published var lastUpdate: Date?
     @Published var error: String?
@@ -11,26 +11,26 @@ class AppState: ObservableObject {
     @Published private(set) var wallpaperMode: WallpaperMode = .same
     @Published private(set) var updateInterval: UpdateInterval = .default
     @Published var showingIntervalPicker = false
-    
+
     private init() {
         // Загружаем сохраненный режим обоев
         Task {
             self.wallpaperMode = await WallpaperManager.shared.getCurrentMode()
         }
     }
-    
+
     func updateWallpaper() {
         guard !isUpdating else { return }
-        
+
         isUpdating = true
         error = nil
-        
+
         Task {
             do {
                 // Используем WallpaperManager для установки обоев с учетом режима
                 let imageUrl = try await ImageService.shared.downloadAndCacheImage()
                 try await WallpaperManager.shared.setWallpaper(from: imageUrl)
-                
+
                 self.isUpdating = false
                 self.lastUpdate = Date()
                 Task {
@@ -45,18 +45,21 @@ class AppState: ObservableObject {
             }
         }
     }
-    
+
     func openWallpapersFolder() {
         Task {
             let urls = await ImageService.shared.getCachedImages()
             if let firstImage = urls.first {
                 await MainActor.run {
-                    NSWorkspace.shared.selectFile(firstImage.path, inFileViewerRootedAtPath: firstImage.deletingLastPathComponent().path)
+                    NSWorkspace.shared.selectFile(
+                        firstImage.path,
+                        inFileViewerRootedAtPath: firstImage.deletingLastPathComponent().path
+                    )
                 }
             }
         }
     }
-    
+
     func toggleBackgroundUpdates() {
         isBackgroundEnabled.toggle()
         Task {
@@ -67,19 +70,20 @@ class AppState: ObservableObject {
             }
         }
     }
-    
+
     func setWallpaperMode(_ mode: WallpaperMode) async {
         guard !isUpdating else { return }
-        
+
         isUpdating = true
         error = nil
         do {
             await WallpaperManager.shared.setMode(mode)
             self.wallpaperMode = mode
-            
+
             // Обновляем обои сразу после смены режима
-            try await WallpaperManager.shared.setWallpaper(from: try await ImageService.shared.downloadAndCacheImage())
-            
+            let imageUrl = try await ImageService.shared.downloadAndCacheImage()
+            try await WallpaperManager.shared.setWallpaper(from: imageUrl)
+
             self.isUpdating = false
             self.lastUpdate = Date()
         } catch {
@@ -87,9 +91,9 @@ class AppState: ObservableObject {
             self.error = error.localizedDescription
         }
     }
-    
+
     func setUpdateInterval(_ interval: UpdateInterval) async {
         await BackgroundService.shared.setUpdateInterval(interval)
         self.updateInterval = interval
     }
-} 
+}

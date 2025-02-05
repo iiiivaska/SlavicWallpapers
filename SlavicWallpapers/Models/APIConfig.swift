@@ -11,14 +11,14 @@ struct UnsplashPhoto: Codable {
     let id: String
     let urls: PhotoURLs
     let user: User
-    
+
     struct PhotoURLs: Codable {
         let raw: String
         let full: String
         let regular: String
     }
-    
+
     struct User: Codable {
         let name: String
     }
-} 
+}

@@ -9,7 +9,11 @@ import XCTest
 
 final class SlavicWallpapersUITestsLaunchTests: XCTestCase {
 
-    override class var runsForEachTargetApplicationUIConfiguration: Bool {
+    static let allTests = [
+        ("testLaunch", testLaunch)
+    ]
+
+    override static var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }
 
@@ -18,7 +22,7 @@ final class SlavicWallpapersUITestsLaunchTests: XCTestCase {
     }
 
     @MainActor
-    func testLaunch() throws {
+    func testLaunch() async throws {
         let app = XCUIApplication()
         app.launch()
 
