@@ -18,7 +18,7 @@ import Foundation
 actor APIClient: APIClientProtocol {
     static let shared = APIClient()
 
-    private let session: URLSession
+    private let session: URLSessionProtocol
     private let decoder: JSONDecoder
 
     private init() {
@@ -33,6 +33,12 @@ actor APIClient: APIClientProtocol {
         ]
 
         self.session = URLSession(configuration: config)
+        self.decoder = JSONDecoder()
+    }
+
+    // Internal for testing purposes only
+    init(session: URLSessionProtocol) {
+        self.session = session
         self.decoder = JSONDecoder()
     }
 

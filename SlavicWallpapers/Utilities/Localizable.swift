@@ -60,9 +60,19 @@ enum Localizable {
                                                    comment: "Minutes only format")
         static let hoursAndMinutes = NSLocalizedString("time.hours_and_minutes",
                                                        comment: "Hours and minutes format")
-        static let updateInterval = NSLocalizedString("time.update_interval",
-                                                      comment: "Update interval title")
-        static let hours = NSLocalizedString("time.hours", comment: "Hours label")
-        static let minutes = NSLocalizedString("time.minutes", comment: "Minutes label")
+        static let updateInterval = NSLocalizedString("update_interval", comment: "Update interval title")
+        static let hours = NSLocalizedString("hours", comment: "Hours")
+        static let minutes = NSLocalizedString("minutes", comment: "Minutes")
+        static let hour = NSLocalizedString("hour", comment: "Single hour")
+        static let minute = NSLocalizedString("minute", comment: "Single minute")
+        static let every = NSLocalizedString("every", comment: "Every time period")
+        static let updateIntervalWithTime = NSLocalizedString(
+            "update_interval_with_time",
+            comment: "Update interval with time description"
+        )
+        static let updateIntervalTitle = NSLocalizedString(
+            "update_interval_title",
+            comment: "Update interval selection title"
+        )
     }
 }

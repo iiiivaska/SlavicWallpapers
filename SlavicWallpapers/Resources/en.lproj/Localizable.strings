@@ -28,4 +28,11 @@
 "time.hours_and_minutes" = "%d hours %d minutes";
 "time.update_interval" = "Update Interval";
 "time.hours" = "Hours";
-"time.minutes" = "Minutes"; 
+"time.minutes" = "Minutes";
+"hour" = "hour";
+"hours" = "hours";
+"minute" = "minute";
+"minutes" = "minutes";
+"every" = "Every";
+"update_interval_with_time" = "Update: %@";
+"update_interval_title" = "Update Interval"; 
