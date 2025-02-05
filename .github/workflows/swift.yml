@@ -17,26 +17,23 @@ jobs:
     - name: Set Xcode Version
       run: sudo xcode-select -s /Applications/Xcode_15.2.app
       
-    - name: Build
+    - name: Build and Test
       run: |
-        xcodebuild build-for-testing \
-          -scheme SlavicWallpapers \
-          -destination 'platform=macOS' \
-          -skipPackagePluginValidation
-          
-    - name: Run Tests
+        swift build
+        swift test
+        
+    - name: Build App
       run: |
-        xcodebuild test-without-building \
-          -scheme SlavicWallpapers \
-          -destination 'platform=macOS' \
-          -testPlan SlavicWallpapers
-          
+        swift build -c release
+        
     - name: Run UI Tests
       run: |
-        xcodebuild test-without-building \
+        xcodebuild test \
           -scheme SlavicWallpapers \
           -destination 'platform=macOS' \
-          -only-testing:SlavicWallpapersUITests
+          -only-testing:SlavicWallpapersUITests \
+          CODE_SIGN_IDENTITY=- \
+          CODE_SIGNING_REQUIRED=NO
 
   lint:
     name: SwiftLint
