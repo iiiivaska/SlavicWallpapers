@@ -39,6 +39,36 @@ jobs:
         name: test-results
         path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/**/*.xcresult
 
+  ui-test:
+    name: UI Tests
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set Xcode Version
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+    
+    - name: Run UI Tests
+      run: |
+        xcodebuild test \
+          -project SlavicWallpapers.xcodeproj \
+          -scheme SlavicWallpapersUITests \
+          -destination 'platform=macOS' \
+          CODE_SIGN_IDENTITY=- \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO \
+          | xcpretty && exit ${PIPESTATUS[0]}
+    
+    - name: Upload UI Test Results
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: ui-test-results
+        path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/**/*.xcresult
+
   lint:
     name: SwiftLint
     runs-on: macos-latest
@@ -54,14 +84,14 @@ jobs:
 
   status-check:
     name: Status Check
-    needs: [test, lint]
+    needs: [test, ui-test, lint]
     runs-on: ubuntu-latest
     if: always()
     
     steps:
     - name: Check Status
       run: |
-        if [ "${{ needs.test.result }}" != "success" ] || [ "${{ needs.lint.result }}" != "success" ]; then
-          echo "Tests or linting failed"
+        if [ "${{ needs.test.result }}" != "success" ] || [ "${{ needs.ui-test.result }}" != "success" ] || [ "${{ needs.lint.result }}" != "success" ]; then
+          echo "Tests, UI tests or linting failed"
           exit 1
         fi 
