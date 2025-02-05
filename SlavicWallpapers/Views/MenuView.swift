@@ -31,11 +31,15 @@ struct MenuView: View {
                 .padding(.vertical, 4)
 
             VStack(spacing: 8) {
-                MenuButton(title: Localizable.Menu.updateWallpaper, icon: "arrow.clockwise") {
+                MenuButton(
+                    title: Localizable.Menu.updateWallpaper,
+                    icon: "arrow.clockwise"
+                ) {
                     withAnimation {
                         appState.updateWallpaper()
                     }
                 }
+                .accessibilityIdentifier("updateWallpaperButton")
                 .disabled(appState.isUpdating)
                 .overlay {
                     if appState.isUpdating {
@@ -55,13 +59,17 @@ struct MenuView: View {
                             await appState.openWallpapersFolder()
                         }
                     }
+                    .accessibilityIdentifier(AccessibilityIdentifiers.openFolderButton)
 
-                    MenuButton(title: Localizable.Menu.backgroundUpdate,
-                               icon: appState.isBackgroundEnabled ? "clock.fill" : "clock") {
+                    MenuButton(
+                        title: Localizable.Menu.backgroundUpdate,
+                        icon: appState.isBackgroundEnabled ? "clock.fill" : "clock"
+                    ) {
                         withAnimation {
                             appState.toggleBackgroundUpdates()
                         }
                     }
+                    .accessibilityIdentifier(AccessibilityIdentifiers.backgroundUpdateButton)
 
                     if appState.isBackgroundEnabled {
                         MenuButton(
@@ -71,6 +79,7 @@ struct MenuView: View {
                         ) {
                             appState.showingIntervalPicker = true
                         }
+                        .accessibilityIdentifier(AccessibilityIdentifiers.updateIntervalButton)
                         .popover(isPresented: $appState.showingIntervalPicker) {
                             UpdateIntervalView(
                                 interval: .init(
@@ -84,7 +93,6 @@ struct MenuView: View {
                                 onDismiss: { appState.showingIntervalPicker = false }
                             )
                         }
-                        .transition(.move(edge: .top).combined(with: .opacity))
                     }
                 }
                 .transition(.scale.combined(with: .opacity))
@@ -92,42 +100,12 @@ struct MenuView: View {
                 Divider()
                     .padding(.vertical, 4)
 
-                Menu(
-                    content: {
-                        ForEach(WallpaperMode.allCases, id: \.self) { mode in
-                            Button(
-                                action: {
-                                    Task {
-                                        await appState.setWallpaperMode(mode)
-                                    }
-                                },
-                                label: {
-                                    HStack {
-                                        Text(mode.localizedName)
-                                        if appState.wallpaperMode == mode {
-                                            Spacer()
-                                            Image(systemName: "checkmark")
-                                                .matchedGeometryEffect(id: "checkmark", in: animation)
-                                        }
-                                    }
-                                }
-                            )
-                            .disabled(appState.isUpdating)
-                        }
-                    },
-                    label: {
-                        MenuButton(
-                            title: "\(Localizable.Menu.wallpaperMode): " +
-                                "\(appState.wallpaperMode.localizedName)",
-                            icon: "rectangle.split.2x1"
-                        ) {
-                        }
-                    }
-                )
+                WallpaperModeMenu(appState: appState, animation: animation)
 
                 MenuButton(title: Localizable.Menu.quit, icon: "power") {
                     NSApplication.shared.terminate(nil)
                 }
+                .accessibilityIdentifier(AccessibilityIdentifiers.quitButton)
             }
             .padding(.horizontal)
         }
@@ -136,6 +114,46 @@ struct MenuView: View {
         .animation(.spring(duration: 0.3), value: appState.isUpdating)
         .animation(.spring(duration: 0.3), value: appState.error)
         .animation(.spring(duration: 0.3), value: appState.isBackgroundEnabled)
+    }
+}
+
+// Создадим отдельное view для меню режима обоев
+struct WallpaperModeMenu: View {
+    @ObservedObject var appState: AppState
+    var animation: Namespace.ID
+
+    var body: some View {
+        Menu(content: {
+            ForEach(WallpaperMode.allCases, id: \.self) { mode in
+                Button(
+                    action: {
+                        Task {
+                            await appState.setWallpaperMode(mode)
+                        }
+                    },
+                    label: {
+                        HStack {
+                            Text(mode.localizedName)
+                            if appState.wallpaperMode == mode {
+                                Spacer()
+                                Image(systemName: "checkmark")
+                                    .matchedGeometryEffect(id: "checkmark", in: animation)
+                            }
+                        }
+                    }
+                )
+                .accessibilityIdentifier("wallpaperMode.\(mode.rawValue)")
+                .disabled(appState.isUpdating)
+            }
+        }, label: {
+            Button(action: { }, label: {
+                HStack {
+                    Text("\(Localizable.Menu.wallpaperMode): \(appState.wallpaperMode.localizedName)")
+                    Image(systemName: "rectangle.split.2x1")
+                }
+            })
+            .accessibilityIdentifier(AccessibilityIdentifiers.wallpaperModeButton)
+        })
     }
 }
 
