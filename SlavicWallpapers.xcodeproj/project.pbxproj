@@ -35,6 +35,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Models/WallpaperMode.swift,
+				Utilities/AccessibilityIdentifiers.swift,
 				Utilities/Localizable.swift,
 			);
 			target = A8D84D862D52990800177341 /* SlavicWallpapersUITests */;
