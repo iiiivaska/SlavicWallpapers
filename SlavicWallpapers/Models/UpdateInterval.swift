@@ -11,7 +11,7 @@ import Foundation
 /// ## Пример использования
 /// ```swift
 /// let interval = UpdateInterval(hours: 2, minutes: 30)
-/// await appState.setUpdateInterval(interval)
+/// appState.setUpdateInterval(interval)
 /// ```
 struct UpdateInterval: Codable, Equatable {
     var hours: Int

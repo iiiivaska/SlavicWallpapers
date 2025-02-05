@@ -6,7 +6,7 @@ enum WallpaperError: Error {
     case fileNotFound
 }
 
-/// Изолированный актор для управления обоями рабочего стола.
+/// Потокобезопасный менеджер для управления обоями рабочего стола.
 ///
 /// `WallpaperManager` обеспечивает потокобезопасную работу с системными
 /// настройками обоев macOS.
@@ -19,13 +19,15 @@ enum WallpaperError: Error {
 /// ## Пример использования
 /// ```swift
 /// let manager = WallpaperManager.shared
-/// try await manager.setWallpaper(from: imageUrl)
+/// manager.setWallpaper(from: imageUrl)
 /// ```
 actor WallpaperManager {
     static let shared = WallpaperManager()
 
+    // Internal for testing purposes only
     var workspace: NSWorkspace
     var userDefaults: UserDefaults
+
     private let wallpaperModeKey = "WallpaperMode"
 
     private init() {
