@@ -14,7 +14,7 @@ import Foundation
 /// let service = ImageService.shared
 /// let imageUrl = try await service.downloadAndCacheImage()
 /// ```
-final class ImageService {
+actor ImageService {
     static let shared = ImageService()
 
     private let fileManager: FileManager

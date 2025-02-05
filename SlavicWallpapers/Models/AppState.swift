@@ -29,29 +29,25 @@ final class AppState: ObservableObject {
     @Published var showingIntervalPicker = false
 
     private init() {
-        // Загружаем сохраненный режим обоев
-        Task {
+        Task { @MainActor in
             self.wallpaperMode = await WallpaperManager.shared.getCurrentMode()
         }
     }
 
     func updateWallpaper() {
         guard !isUpdating else { return }
-
-        isUpdating = true
-        error = nil
-
-        Task {
+        
+        Task { @MainActor in
+            isUpdating = true
+            error = nil
+            
             do {
-                // Используем WallpaperManager для установки обоев с учетом режима
                 let imageUrl = try await ImageService.shared.downloadAndCacheImage()
                 try await WallpaperManager.shared.setWallpaper(from: imageUrl)
-
+                
                 self.isUpdating = false
                 self.lastUpdate = Date()
-                Task {
-                    await BackgroundService.shared.updateLastUpdateTime()
-                }
+                await BackgroundService.shared.updateLastUpdateTime()
             } catch let error as AppError {
                 self.isUpdating = false
                 self.error = error.localizedDescription
@@ -63,15 +59,13 @@ final class AppState: ObservableObject {
     }
 
     func openWallpapersFolder() {
-        Task {
+        Task { @MainActor in
             let urls = await ImageService.shared.getCachedImages()
             if let firstImage = urls.first {
-                await MainActor.run {
-                    NSWorkspace.shared.selectFile(
-                        firstImage.path,
-                        inFileViewerRootedAtPath: firstImage.deletingLastPathComponent().path
-                    )
-                }
+                NSWorkspace.shared.selectFile(
+                    firstImage.path,
+                    inFileViewerRootedAtPath: firstImage.deletingLastPathComponent().path
+                )
             }
         }
     }
