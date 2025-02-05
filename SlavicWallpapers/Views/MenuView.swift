@@ -121,7 +121,7 @@ struct MenuView: View {
 struct WallpaperModeMenu: View {
     @ObservedObject var appState: AppState
     var animation: Namespace.ID
-    
+
     var body: some View {
         Menu {
             ForEach(WallpaperMode.allCases, id: \.self) { mode in
