@@ -92,32 +92,38 @@ struct MenuView: View {
                 Divider()
                     .padding(.vertical, 4)
 
-                Menu(content: {
-                    ForEach(WallpaperMode.allCases, id: \.self) { mode in
-                        Button(action: {
-                            Task {
-                                await appState.setWallpaperMode(mode)
-                            }
-                        }) {
-                            HStack {
-                                Text(mode.localizedName)
-                                if appState.wallpaperMode == mode {
-                                    Spacer()
-                                    Image(systemName: "checkmark")
-                                        .matchedGeometryEffect(id: "checkmark", in: animation)
+                Menu(
+                    content: {
+                        ForEach(WallpaperMode.allCases, id: \.self) { mode in
+                            Button(
+                                action: {
+                                    Task {
+                                        await appState.setWallpaperMode(mode)
+                                    }
+                                },
+                                label: {
+                                    HStack {
+                                        Text(mode.localizedName)
+                                        if appState.wallpaperMode == mode {
+                                            Spacer()
+                                            Image(systemName: "checkmark")
+                                                .matchedGeometryEffect(id: "checkmark", in: animation)
+                                        }
+                                    }
                                 }
-                            }
+                            )
+                            .disabled(appState.isUpdating)
                         }
-                        .disabled(appState.isUpdating)
+                    },
+                    label: {
+                        MenuButton(
+                            title: "\(Localizable.Menu.wallpaperMode): " +
+                                "\(appState.wallpaperMode.localizedName)",
+                            icon: "rectangle.split.2x1"
+                        ) {
+                        }
                     }
-                }, label: {
-                    MenuButton(
-                        title: "\(Localizable.Menu.wallpaperMode): " +
-                            "\(appState.wallpaperMode.localizedName)",
-                        icon: "rectangle.split.2x1"
-                    ) {
-                    }
-                })
+                )
 
                 MenuButton(title: Localizable.Menu.quit, icon: "power") {
                     NSApplication.shared.terminate(nil)

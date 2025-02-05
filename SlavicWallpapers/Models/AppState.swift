@@ -51,7 +51,10 @@ class AppState: ObservableObject {
             let urls = await ImageService.shared.getCachedImages()
             if let firstImage = urls.first {
                 await MainActor.run {
-                    NSWorkspace.shared.selectFile(firstImage.path, inFileViewerRootedAtPath: firstImage.deletingLastPathComponent().path)
+                    NSWorkspace.shared.selectFile(
+                        firstImage.path,
+                        inFileViewerRootedAtPath: firstImage.deletingLastPathComponent().path
+                    )
                 }
             }
         }
@@ -78,7 +81,8 @@ class AppState: ObservableObject {
             self.wallpaperMode = mode
 
             // Обновляем обои сразу после смены режима
-            try await WallpaperManager.shared.setWallpaper(from: try await ImageService.shared.downloadAndCacheImage())
+            let imageUrl = try await ImageService.shared.downloadAndCacheImage()
+            try await WallpaperManager.shared.setWallpaper(from: imageUrl)
 
             self.isUpdating = false
             self.lastUpdate = Date()

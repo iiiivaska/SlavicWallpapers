@@ -59,7 +59,9 @@ actor ImageService {
     }
 
     private func calculateCacheSize() async throws -> Int {
-        let contents = try fileManager.contentsOfDirectory(at: cachesDirectory, includingPropertiesForKeys: [.fileSizeKey])
+        let contents = try fileManager.contentsOfDirectory(
+            at: cachesDirectory, includingPropertiesForKeys: [.fileSizeKey]
+        )
         return try contents.reduce(0) { sum, url in
             let resourceValues = try url.resourceValues(forKeys: [.fileSizeKey])
             return sum + (resourceValues.fileSize ?? 0)
@@ -67,7 +69,9 @@ actor ImageService {
     }
 
     private func cleanOldCache() async throws {
-        let contents = try fileManager.contentsOfDirectory(at: cachesDirectory, includingPropertiesForKeys: [.creationDateKey])
+        let contents = try fileManager.contentsOfDirectory(
+            at: cachesDirectory, includingPropertiesForKeys: [.creationDateKey]
+        )
         let oldFiles = contents.filter { url in
             guard let creationDate = try? url.resourceValues(forKeys: [.creationDateKey]).creationDate else {
                 return false

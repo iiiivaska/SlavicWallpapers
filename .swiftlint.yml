@@ -21,7 +21,7 @@ excluded:
   
 # Настройки правил
 line_length:
-  warning: 100
+  warning: 120
   error: 120
   ignores_comments: true
   ignores_urls: false
