@@ -101,7 +101,6 @@ struct MenuView: View {
                     .padding(.vertical, 4)
 
                 WallpaperModeMenu(appState: appState, animation: animation)
-                
 
                 MenuButton(title: Localizable.Menu.quit, icon: "power") {
                     NSApplication.shared.terminate(nil)
@@ -147,10 +146,11 @@ struct WallpaperModeMenu: View {
                 .disabled(appState.isUpdating)
             }
         } label: {
-            MenuButton(
-                title: "\(Localizable.Menu.wallpaperMode): \(appState.wallpaperMode.localizedName)",
-                icon: "rectangle.split.2x1"
-            ) {
+            Button(action: {}) {
+                HStack {
+                    Text("\(Localizable.Menu.wallpaperMode): \(appState.wallpaperMode.localizedName)")
+                    Image(systemName: "rectangle.split.2x1")
+                }
             }
             .accessibilityIdentifier(AccessibilityIdentifiers.wallpaperModeButton)
         }
