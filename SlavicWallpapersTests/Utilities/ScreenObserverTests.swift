@@ -23,7 +23,6 @@ final class ScreenObserverTests: XCTestCase {
     }
 
     func testScreenCountUpdate() {
-        XCTAssertEqual(true, false)
         // Given
         let initialCount = sut.screensCount
 
