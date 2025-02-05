@@ -51,7 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Добавляем наблюдатель для закрытия при клике вне попапа
         NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
-            guard let self = self, self.popover.isShown else { return }
+            guard let self, self.popover.isShown else { return }
 
             let clickLocation = event.window?.convertPoint(toScreen: event.locationInWindow) ?? .zero
             if !self.isClickInPopover(clickLocation) {
