@@ -24,7 +24,7 @@ actor BackgroundService {
 
     private init() {
         self.userDefaults = .standard
-        self.appState = AppState.shared // Инициализируем сразу
+        self.appState = AppState.shared // Инициализируем сразу, так как shared уже @MainActor
     }
 
     // Internal for testing

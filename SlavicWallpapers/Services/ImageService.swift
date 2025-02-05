@@ -44,11 +44,11 @@ actor ImageService {
             try await maintainCache()
 
             let photo = try await APIClient.shared.fetchRandomPhoto()
-            guard let imageUrl = URL(string: photo.urls.full) else {
+            guard let imageUrl = URL(string: photo.imageURL) else {
                 throw AppError.invalidImageData
             }
 
-            let imageData = try await APIClient.shared.downloadImage(from: imageUrl)
+            let imageData = try await APIClient.shared.downloadImage(from: imageUrl.absoluteString)
 
             let fileName = "\(photo.id)_\(Date().timeIntervalSince1970).jpg"
             let fileURL = cachesDirectory.appendingPathComponent(fileName)
