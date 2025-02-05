@@ -5,8 +5,8 @@ enum AccessibilityIdentifiers {
     static let updateIntervalButton = "updateIntervalButton"
     static let wallpaperModeButton = "wallpaperModeButton"
     static let quitButton = "quitButton"
-
+    
     static func wallpaperModeOption(_ mode: WallpaperMode) -> String {
         "wallpaperMode.\(mode.rawValue)"
     }
-}
+} 
