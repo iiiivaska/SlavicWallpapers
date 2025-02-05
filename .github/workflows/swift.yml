@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: UI Tests
     runs-on: macos-latest
     steps:
       - name: Checkout code
@@ -19,10 +20,10 @@ jobs:
           xcode-version: '16.2'
 
       - name: Build the app
-        run: xcodebuild clean build -project SlavicWallpapers.xcodeproj -scheme SlavicWallpapers -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2'
+        run: xcodebuild clean build -project SlavicWallpapers.xcodeproj -scheme SlavicWallpapers -destination 'platform=macOS'
 
       - name: Run UI tests
-        run: xcodebuild test -project SlavicWallpapers.xcodeproj -scheme SlavicWallpapersUITests -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2'
+        run: xcodebuild test -project SlavicWallpapers.xcodeproj -scheme SlavicWallpapersUITests -destination 'platform=macOS'
 
   test:
     name: Run Tests
