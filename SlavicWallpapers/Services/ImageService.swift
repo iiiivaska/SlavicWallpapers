@@ -42,23 +42,21 @@ actor ImageService {
     func downloadAndCacheImage() async throws -> URL {
         do {
             try await maintainCache()
-
+            
             let photo = try await APIClient.shared.fetchRandomPhoto()
-            guard let imageUrl = URL(string: photo.imageURL) else {
-                throw AppError.invalidImageData
-            }
-
-            let imageData = try await APIClient.shared.downloadImage(from: imageUrl.absoluteString)
-
+            
+            // Получаем только путь из imageURL
+            let imageData = try await APIClient.shared.downloadImage(from: photo.imageURL)
+            
             let fileName = "\(photo.id)_\(Date().timeIntervalSince1970).jpg"
             let fileURL = cachesDirectory.appendingPathComponent(fileName)
-
+            
             do {
                 try imageData.write(to: fileURL)
             } catch {
                 throw AppError.cacheSaveFailed
             }
-
+            
             return fileURL
         } catch {
             throw error

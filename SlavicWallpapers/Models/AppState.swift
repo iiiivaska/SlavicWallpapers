@@ -35,23 +35,30 @@ final class AppState: ObservableObject {
     }
 
     func updateWallpaper() {
-        guard !isUpdating else { return }
-
+        print("🔄 Starting wallpaper update...")
+        
         Task { @MainActor in
             isUpdating = true
             error = nil
-
+            
             do {
+                print("📥 Downloading new wallpaper...")
                 let imageUrl = try await ImageService.shared.downloadAndCacheImage()
+                print("✅ Downloaded wallpaper to: \(imageUrl)")
+                
+                print("🖼 Setting wallpaper...")
                 try await WallpaperManager.shared.setWallpaper(from: imageUrl)
-
+                print("✅ Wallpaper set successfully")
+                
                 self.isUpdating = false
                 self.lastUpdate = Date()
                 await BackgroundService.shared.updateLastUpdateTime()
             } catch let error as AppError {
+                print("❌ Error updating wallpaper: \(error)")
                 self.isUpdating = false
                 self.error = error.localizedDescription
             } catch {
+                print("❌ Unknown error: \(error)")
                 self.isUpdating = false
                 self.error = Localizable.Error.unknown
             }

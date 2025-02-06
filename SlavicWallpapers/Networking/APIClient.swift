@@ -20,36 +20,51 @@ actor APIClient: APIClientProtocol {
 
     private let session: URLSessionProtocol
     private let decoder: JSONDecoder
-    private let baseURL = "http://localhost:8080"
+    private let baseURL = "http://89.169.140.95:8080"
 
     init(session: URLSessionProtocol = URLSession.shared) {
+        print("🚀 Initializing APIClient with baseURL: \(baseURL)")
         self.session = session
         self.decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .useDefaultKeys
     }
 
     func fetchRandomPhoto() async throws -> WallpaperResponse {
         let url = URL(string: "\(baseURL)/wallpaper").require()
+        print("📡 Fetching photo from: \(url)")
 
         var attempts = 0
         while attempts <= NetworkConfig.maxRetryAttempts {
             do {
-                let (data, response) = try await session.data(from: url)
+                print("🔄 Attempt \(attempts + 1) of \(NetworkConfig.maxRetryAttempts + 1)")
+                let (data, rawresponse) = try await session.data(from: url)
 
-                guard let httpResponse = response as? HTTPURLResponse else {
+                guard let httpResponse = rawresponse as? HTTPURLResponse else {
+                    print("❌ Invalid response type")
                     throw AppError.networkUnavailable
                 }
+
+                print("📥 Response status code: \(httpResponse.statusCode)")
 
                 guard httpResponse.statusCode == 200 else {
+                    print("❌ Invalid status code: \(httpResponse.statusCode)")
                     throw AppError.networkUnavailable
                 }
 
-                let wallpaper = try JSONDecoder().decode(WallpaperResponse.self, from: data)
-                return wallpaper
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("📦 Received JSON: \(jsonString)")
+                }
+
+                let response = try decoder.decode(WallpaperResponse.self, from: data)
+                print("✅ Successfully decoded response with id: \(response.id)")
+                return response
             } catch {
+                print("❌ Error during fetch: \(error)")
                 attempts += 1
                 if attempts > NetworkConfig.maxRetryAttempts {
                     throw AppError.maxRetryAttemptsReached
                 }
+                print("⏳ Waiting \(NetworkConfig.retryDelay) seconds before retry...")
                 try await Task.sleep(nanoseconds: UInt64(NetworkConfig.retryDelay * 1_000_000_000))
             }
         }
@@ -58,6 +73,7 @@ actor APIClient: APIClientProtocol {
 
     func downloadImage(from urlPath: String) async throws -> Data {
         let fullURL = URL(string: "\(baseURL)\(urlPath)").require()
+        print("Downloading image from: \(fullURL)")
 
         var attempts = 0
         while attempts <= NetworkConfig.maxRetryAttempts {
@@ -71,6 +87,7 @@ actor APIClient: APIClientProtocol {
 
                 return data
             } catch {
+                print("Error during download: \(error)")
                 attempts += 1
                 if attempts > NetworkConfig.maxRetryAttempts {
                     throw AppError.maxRetryAttemptsReached
